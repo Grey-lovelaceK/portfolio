@@ -116,14 +116,17 @@
   .project .link-line a:hover { text-decoration: underline; }
   .project .note { color: var(--dim); font-style: italic; }
 
+  .shots { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 14px; }
+  .shots a { flex: 1 1 260px; display: block; }
   .shot {
     display: block;
-    max-width: 100%;
+    width: 100%;
     border-radius: 6px;
     border: 1px solid var(--term-border);
-    margin: 4px 0 14px;
     box-shadow: 0 12px 30px -14px rgba(0,0,0,0.6);
+    transition: border-color .15s, transform .15s;
   }
+  .shots a:hover .shot { border-color: var(--link); transform: translateY(-2px); }
 
   .cursor {
     display: inline-block;
@@ -194,7 +197,10 @@
         Google Places resuelta con teselado hexagonal, para cubrir un sector completo sin huecos ni
         gastar cuota de más.
       </p>
-      <img class="shot" src="assets/faro-landing.jpg" alt="Landing de Faro°, herramienta de auditoría SEO/AEO" loading="lazy">
+      <div class="shots">
+        <a href="https://faro-landing-alpha.vercel.app" target="_blank" rel="noopener"><img class="shot" src="assets/faro-landing.jpg" alt="Landing de Faro°, herramienta de auditoría SEO/AEO" loading="lazy"></a>
+        <a href="https://faro-landing-alpha.vercel.app" target="_blank" rel="noopener"><img class="shot" src="assets/faro-landing-2.jpg" alt="Sección de servicios de Faro°: desarrollo, SEO/AEO/GEO, marketing" loading="lazy"></a>
+      </div>
       <div class="flags">
         <span>--javascript</span><span>--vercel-functions</span><span>--postgres-neon</span>
         <span>--google-places</span><span>--pagespeed</span><span>--gemini</span>
@@ -226,7 +232,9 @@
         como apoyo externo a una fundación educativa. Diseñé el modelo relacional completo — tablas
         normalizadas con restricciones, roles y permisos por perfil, y generación de reportes en PDF.
       </p>
-      <img class="shot" src="assets/casa-azul.jpg" alt="Sistema Casa Azul, gestión académica" loading="lazy">
+      <div class="shots">
+        <a href="https://casa-azul.cl" target="_blank" rel="noopener"><img class="shot" src="assets/casa-azul.jpg" alt="Sistema Casa Azul, gestión académica" loading="lazy"></a>
+      </div>
       <div class="flags">
         <span>--laravel11</span><span>--vue3</span><span>--inertia</span>
         <span>--mysql</span><span>--spatie-permission</span>
@@ -260,7 +268,9 @@
         documentación Swagger/OpenAPI y pruebas con pytest; frontend en React con paneles diferenciados
         por rol y exportación de reportes a Excel.
       </p>
-      <img class="shot" src="assets/asistencia-front.jpg" alt="Login del Sistema de Asistencia (React)" loading="lazy">
+      <div class="shots">
+        <a href="https://front-asistencia.vercel.app" target="_blank" rel="noopener"><img class="shot" src="assets/asistencia-front.jpg" alt="Login del Sistema de Asistencia (React)" loading="lazy"></a>
+      </div>
       <div class="flags">
         <span>--django-rest</span><span>--postgresql</span><span>--jwt</span>
         <span>--swagger</span><span>--pytest</span><span>--react18</span>
