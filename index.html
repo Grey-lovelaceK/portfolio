@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cristian Florez Revilla — Portafolio</title>
+<style>
+  :root {
+    --bg: #0b0f14;
+    --bg-card: #121821;
+    --border: #1f2833;
+    --text: #e6edf3;
+    --text-dim: #8b96a5;
+    --accent: #5eead4;
+    --accent-dim: #2dd4bf22;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  .wrap { max-width: 880px; margin: 0 auto; padding: 64px 24px 96px; }
+
+  header { margin-bottom: 56px; }
+  header h1 { font-size: 2rem; margin: 0 0 8px; }
+  header p.role { color: var(--accent); font-size: 1.05rem; margin: 0 0 16px; font-weight: 600; }
+  header p.bio { color: var(--text-dim); max-width: 640px; margin: 0 0 20px; }
+  .links { display: flex; gap: 16px; flex-wrap: wrap; }
+  .links a {
+    color: var(--text);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    transition: border-color .15s;
+  }
+  .links a:hover { border-color: var(--accent); color: var(--accent); }
+
+  section h2 {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-dim);
+    margin: 0 0 20px;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .project {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+  }
+  .project h3 { margin: 0 0 6px; font-size: 1.15rem; }
+  .project .tagline { color: var(--accent); font-size: 0.92rem; margin: 0 0 14px; }
+  .project p.desc { color: var(--text-dim); margin: 0 0 16px; font-size: 0.95rem; }
+  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .stack span {
+    font-size: 0.75rem;
+    background: var(--accent-dim);
+    color: var(--accent);
+    padding: 3px 9px;
+    border-radius: 999px;
+  }
+  .project .actions a {
+    font-size: 0.85rem;
+    color: var(--text);
+    text-decoration: none;
+    margin-right: 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .project .actions a:hover { color: var(--accent); border-color: var(--accent); }
+  .project .note {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    font-style: italic;
+    margin-top: 8px;
+  }
+
+  footer {
+    margin-top: 64px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>Cristian Florez Revilla</h1>
+    <p class="role">Desarrollador Full-Stack — integraciones, datos y BI</p>
+    <p class="bio">
+      Sostengo sistemas propios en producción para un grupo de retail y distribución:
+      el punto donde ERP, e-commerce y analítica tienen que hablarse entre sí sin romperse.
+      Trabajo con PHP/Laravel, Python, TypeScript, sobre Vue, React/Next.js, PostgreSQL y MySQL,
+      con agentes de desarrollo IA como parte del flujo diario.
+    </p>
+    <div class="links">
+      <a href="mailto:greyc9404@gmail.com">Email</a>
+      <a href="https://github.com/Grey-lovelaceK" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://www.linkedin.com/in/cristian-florez-revilla/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </header>
+
+  <section>
+    <h2>Proyectos</h2>
+
+    <div class="project">
+      <h3>Faro°</h3>
+      <p class="tagline">Auditoría de visibilidad web (SEO / AEO)</p>
+      <p class="desc">
+        Nota de 0 a 100 sobre 20 verificaciones de SEO, metadatos sociales, datos estructurados y salud
+        técnica. Integra PageSpeed Insights para Core Web Vitals reales, y un modelo de lenguaje con
+        salida JSON forzada para evaluar algo que casi nadie mide todavía: si un asistente de IA citaría
+        ese sitio al responder una pregunta. Incluye una herramienta de prospección sobre la API de
+        Google Places resuelta con teselado hexagonal, para cubrir un sector completo sin huecos ni
+        gastar cuota de más.
+      </p>
+      <div class="stack">
+        <span>JavaScript</span><span>Funciones serverless (Vercel)</span><span>PostgreSQL (Neon)</span>
+        <span>Google Places API</span><span>PageSpeed Insights</span><span>Gemini</span>
+      </div>
+      <div class="actions">
+        <a href="https://faro-landing-alpha.vercel.app" target="_blank" rel="noopener">Demo en vivo →</a>
+        <a href="https://github.com/Grey-lovelaceK/faro-landing" target="_blank" rel="noopener">Código →</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>grey.stock</h3>
+      <p class="tagline">Dashboard de rotación de inventario</p>
+      <p class="desc">
+        Conecta el stock en tiempo real (API de Bsale) con el histórico de ventas y compras cargado
+        desde Excel, en Supabase. Calcula KPIs de rotación, quiebre y sobrestock producto por producto,
+        con sincronización automática diaria vía cron de Vercel. Lectura pública y escritura restringida
+        a service role (Row-Level Security).
+      </p>
+      <div class="stack">
+        <span>Next.js 14 (App Router)</span><span>Supabase (Postgres + RLS)</span>
+        <span>Bsale API</span><span>Vercel Cron</span>
+      </div>
+      <div class="actions">
+        <a href="https://github.com/Grey-lovelaceK/greystock" target="_blank" rel="noopener">Código →</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>Sistema Casa Azul</h3>
+      <p class="tagline">Gestión académica para una fundación educativa</p>
+      <p class="desc">
+        Matrículas, asistencia, evaluaciones ponderadas y notas finales, a pedido del jefe de carrera
+        como apoyo externo a la fundación. Diseñé el modelo relacional completo — tablas normalizadas
+        con restricciones, roles y permisos por perfil, y generación de reportes en PDF.
+      </p>
+      <div class="stack">
+        <span>Laravel 11</span><span>Vue 3 + Inertia</span><span>MySQL</span><span>Spatie Permission</span>
+      </div>
+      <div class="actions">
+        <a href="https://casa-azul.cl" target="_blank" rel="noopener">Sitio en producción →</a>
+      </div>
+    </div>
+
+    <div class="project">
+      <h3>MarcacionGO</h3>
+      <p class="tagline">Control de asistencia laboral con biometría</p>
+      <p class="desc">
+        Proyecto de práctica profesional. Registra asistencia con geolocalización, cámara y biometría
+        facial (WebAuthn), con las plantillas faciales cifradas en base de datos, según la normativa de
+        registro de asistencia de la Dirección del Trabajo. El servidor se comparte con otro producto en
+        producción: aislé la app en su propio puerto y documenté los límites operativos para no afectar
+        los servicios del otro sistema.
+      </p>
+      <div class="stack">
+        <span>Fastify + TypeScript</span><span>PostgreSQL (Supabase)</span><span>React + Vite (PWA)</span>
+        <span>AWS EC2</span><span>nginx</span><span>pm2</span>
+      </div>
+      <p class="note">Código en servidor privado compartido con otro cliente — sin repositorio público por ahora.</p>
+    </div>
+
+  </section>
+
+  <footer>
+    Santiago, Chile · Actualizado 2026
+  </footer>
+
+</div>
+</body>
+</html>
