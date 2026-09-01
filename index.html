@@ -4,119 +4,179 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cristian Florez Revilla — Portafolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #0b0f14;
-    --bg-card: #121821;
-    --border: #1f2833;
-    --text: #e6edf3;
-    --text-dim: #8b96a5;
-    --accent: #5eead4;
-    --accent-dim: #2dd4bf22;
+    --bg: #05070a;
+    --term-bg: #0d1117;
+    --term-border: #21262d;
+    --fg: #c9d1d9;
+    --dim: #6e7681;
+    --prompt: #7ee787;
+    --cmd: #79c0ff;
+    --accent: #ffa657;
+    --link: #a5d6ff;
+    --red: #ff7b72;
+    --yellow: #e3b341;
+    --green: #3fb950;
   }
   * { box-sizing: border-box; }
+  html { background: var(--bg); }
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     background: var(--bg);
-    color: var(--text);
-    line-height: 1.5;
+    background-image: radial-gradient(ellipse at top, #0f1720 0%, var(--bg) 60%);
+    color: var(--fg);
+    font-family: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+    font-size: 14.5px;
+    line-height: 1.65;
+    padding: 40px 16px 80px;
   }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 64px 24px 96px; }
 
-  header { margin-bottom: 56px; }
-  header h1 { font-size: 2rem; margin: 0 0 8px; }
-  header p.role { color: var(--accent); font-size: 1.05rem; margin: 0 0 16px; font-weight: 600; }
-  header p.bio { color: var(--text-dim); max-width: 640px; margin: 0 0 20px; }
-  .links { display: flex; gap: 16px; flex-wrap: wrap; }
-  .links a {
-    color: var(--text);
+  .terminal {
+    max-width: 860px;
+    margin: 0 auto;
+    background: var(--term-bg);
+    border: 1px solid var(--term-border);
+    border-radius: 10px;
+    box-shadow: 0 24px 60px -20px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.02);
+    overflow: hidden;
+  }
+
+  .titlebar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 16px;
+    background: #161b22;
+    border-bottom: 1px solid var(--term-border);
+  }
+  .dot { width: 11px; height: 11px; border-radius: 50%; }
+  .dot.r { background: #ff5f56; }
+  .dot.y { background: #ffbd2e; }
+  .dot.g { background: #27c93f; }
+  .titlebar span.path {
+    margin: 0 auto;
+    color: var(--dim);
+    font-size: 12.5px;
+    transform: translateX(-16px);
+  }
+
+  .body { padding: 28px 28px 36px; }
+
+  .line { margin: 0 0 4px; white-space: pre-wrap; word-break: break-word; }
+  .prompt::before { content: "cristian@portfolio "; color: var(--dim); }
+  .prompt::after { content: " $"; color: var(--dim); }
+  .prompt { color: var(--prompt); font-weight: 500; }
+  .cmd { color: var(--cmd); }
+
+  .out { color: var(--fg); margin: 6px 0 22px; padding-left: 2px; }
+  .out .role { color: var(--accent); font-weight: 700; }
+  .out p { margin: 0 0 12px; max-width: 640px; color: var(--fg); }
+  .out p:last-child { margin-bottom: 0; }
+
+  .filelist { margin: 6px 0 22px; padding-left: 2px; }
+  .filelist a {
+    display: block;
+    color: var(--link);
     text-decoration: none;
-    border: 1px solid var(--border);
-    padding: 8px 14px;
-    border-radius: 8px;
-    font-size: 0.9rem;
-    transition: border-color .15s;
+    margin-bottom: 4px;
   }
-  .links a:hover { border-color: var(--accent); color: var(--accent); }
+  .filelist a:hover { text-decoration: underline; }
+  .filelist .perm { color: var(--dim); margin-right: 10px; }
 
-  section h2 {
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-dim);
-    margin: 0 0 20px;
-    padding-top: 8px;
-    border-top: 1px solid var(--border);
-  }
+  .section-gap { height: 8px; }
 
   .project {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 24px 28px;
-    margin-bottom: 20px;
+    margin: 6px 0 26px;
+    padding-left: 2px;
   }
-  .project h3 { margin: 0 0 6px; font-size: 1.15rem; }
-  .project .tagline { color: var(--accent); font-size: 0.92rem; margin: 0 0 14px; }
-  .project p.desc { color: var(--text-dim); margin: 0 0 16px; font-size: 0.95rem; }
-  .stack { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
-  .stack span {
-    font-size: 0.75rem;
-    background: var(--accent-dim);
-    color: var(--accent);
-    padding: 3px 9px;
-    border-radius: 999px;
+  .project .fname {
+    color: var(--yellow);
+    font-weight: 700;
   }
-  .project .actions a {
-    font-size: 0.85rem;
-    color: var(--text);
-    text-decoration: none;
-    margin-right: 16px;
-    border-bottom: 1px solid var(--border);
+  .project .desc {
+    margin: 10px 0 14px;
+    max-width: 660px;
+    color: var(--fg);
   }
-  .project .actions a:hover { color: var(--accent); border-color: var(--accent); }
-  .project .note {
-    font-size: 0.82rem;
-    color: var(--text-dim);
-    font-style: italic;
+  .flags { margin: 0 0 14px; display: flex; flex-wrap: wrap; gap: 8px; }
+  .flags span {
+    color: var(--green);
+    background: rgba(63,185,80,0.08);
+    border: 1px solid rgba(63,185,80,0.25);
+    border-radius: 4px;
+    padding: 2px 8px;
+    font-size: 12.5px;
+  }
+  .project .link-line { color: var(--dim); }
+  .project .link-line a { color: var(--link); text-decoration: none; }
+  .project .link-line a:hover { text-decoration: underline; }
+  .project .note { color: var(--dim); font-style: italic; }
+
+  .cursor {
+    display: inline-block;
+    width: 8px;
+    height: 16px;
+    background: var(--fg);
+    vertical-align: middle;
+    margin-left: 4px;
+    animation: blink 1s steps(1) infinite;
+  }
+  @keyframes blink { 50% { opacity: 0; } }
+
+  footer.term-footer {
+    color: var(--dim);
     margin-top: 8px;
+    padding-top: 16px;
+    border-top: 1px dashed var(--term-border);
   }
 
-  footer {
-    margin-top: 64px;
-    padding-top: 24px;
-    border-top: 1px solid var(--border);
-    color: var(--text-dim);
-    font-size: 0.85rem;
+  @media (max-width: 600px) {
+    body { font-size: 13px; padding: 20px 8px 60px; }
+    .body { padding: 20px 18px 28px; }
   }
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="terminal">
+  <div class="titlebar">
+    <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+    <span class="path">cristian@portfolio: ~</span>
+  </div>
 
-  <header>
-    <h1>Cristian Florez Revilla</h1>
-    <p class="role">Desarrollador Full-Stack — integraciones, datos y BI</p>
-    <p class="bio">
-      Sostengo sistemas propios en producción para un grupo de retail y distribución:
-      el punto donde ERP, e-commerce y analítica tienen que hablarse entre sí sin romperse.
-      Trabajo con PHP/Laravel, Python, TypeScript, sobre Vue, React/Next.js, PostgreSQL y MySQL,
-      con agentes de desarrollo IA como parte del flujo diario.
-    </p>
-    <div class="links">
-      <a href="mailto:greyc9404@gmail.com">Email</a>
-      <a href="https://github.com/Grey-lovelaceK" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://www.linkedin.com/in/cristian-florez-revilla/" target="_blank" rel="noopener">LinkedIn</a>
+  <div class="body">
+
+    <p class="line prompt cmd">whoami</p>
+    <div class="out">
+      <p><span class="role">Cristian Florez Revilla</span> — Desarrollador Full-Stack</p>
+      <p>Sostengo sistemas propios en producción para un grupo de retail y distribución: el punto donde
+      ERP, e-commerce y analítica tienen que hablarse entre sí sin romperse. Trabajo con PHP/Laravel,
+      Python, TypeScript, sobre Vue, React/Next.js, PostgreSQL y MySQL, con agentes de desarrollo IA
+      como parte del flujo diario.</p>
     </div>
-  </header>
 
-  <section>
-    <h2>Proyectos</h2>
+    <p class="line prompt cmd">ls -la contacto/</p>
+    <div class="filelist">
+      <a href="mailto:greyc9404@gmail.com"><span class="perm">-rw-r--r--</span>email.txt</a>
+      <a href="https://github.com/Grey-lovelaceK" target="_blank" rel="noopener"><span class="perm">drwxr-xr-x</span>github/</a>
+      <a href="https://www.linkedin.com/in/cristian-florez-revilla/" target="_blank" rel="noopener"><span class="perm">drwxr-xr-x</span>linkedin/</a>
+    </div>
 
+    <p class="line prompt cmd">ls proyectos/</p>
+    <div class="filelist" style="color: var(--dim); margin-bottom: 26px;">
+      <span>drwxr-xr-x  faro-landing/</span>
+      <span>drwxr-xr-x  greystock/</span>
+      <span>drwxr-xr-x  casa-azul/</span>
+      <span>drwxr-xr-x  marcaciongo/</span>
+      <span>drwxr-xr-x  asistencia-django-react/</span>
+    </div>
+
+    <p class="line prompt cmd">cat proyectos/faro-landing/README.md</p>
     <div class="project">
-      <h3>Faro°</h3>
-      <p class="tagline">Auditoría de visibilidad web (SEO / AEO)</p>
+      <p class="fname"># Faro° — Auditoría de visibilidad web (SEO / AEO)</p>
       <p class="desc">
         Nota de 0 a 100 sobre 20 verificaciones de SEO, metadatos sociales, datos estructurados y salud
         técnica. Integra PageSpeed Insights para Core Web Vitals reales, y un modelo de lenguaje con
@@ -125,53 +185,47 @@
         Google Places resuelta con teselado hexagonal, para cubrir un sector completo sin huecos ni
         gastar cuota de más.
       </p>
-      <div class="stack">
-        <span>JavaScript</span><span>Funciones serverless (Vercel)</span><span>PostgreSQL (Neon)</span>
-        <span>Google Places API</span><span>PageSpeed Insights</span><span>Gemini</span>
+      <div class="flags">
+        <span>--javascript</span><span>--vercel-functions</span><span>--postgres-neon</span>
+        <span>--google-places</span><span>--pagespeed</span><span>--gemini</span>
       </div>
-      <div class="actions">
-        <a href="https://faro-landing-alpha.vercel.app" target="_blank" rel="noopener">Demo en vivo →</a>
-        <a href="https://github.com/Grey-lovelaceK/faro-landing" target="_blank" rel="noopener">Código →</a>
-      </div>
+      <p class="link-line">$ open <a href="https://faro-landing-alpha.vercel.app" target="_blank" rel="noopener">faro-landing-alpha.vercel.app</a> · <a href="https://github.com/Grey-lovelaceK/faro-landing" target="_blank" rel="noopener">/faro-landing</a></p>
     </div>
 
+    <p class="line prompt cmd">cat proyectos/greystock/README.md</p>
     <div class="project">
-      <h3>grey.stock</h3>
-      <p class="tagline">Dashboard de rotación de inventario</p>
+      <p class="fname"># grey.stock — Dashboard de rotación de inventario</p>
       <p class="desc">
         Conecta el stock en tiempo real (API de Bsale) con el histórico de ventas y compras cargado
         desde Excel, en Supabase. Calcula KPIs de rotación, quiebre y sobrestock producto por producto,
         con sincronización automática diaria vía cron de Vercel. Lectura pública y escritura restringida
         a service role (Row-Level Security).
       </p>
-      <div class="stack">
-        <span>Next.js 14 (App Router)</span><span>Supabase (Postgres + RLS)</span>
-        <span>Bsale API</span><span>Vercel Cron</span>
+      <div class="flags">
+        <span>--nextjs14</span><span>--supabase</span><span>--rls</span>
+        <span>--bsale-api</span><span>--vercel-cron</span>
       </div>
-      <div class="actions">
-        <a href="https://github.com/Grey-lovelaceK/greystock" target="_blank" rel="noopener">Código →</a>
-      </div>
+      <p class="link-line">$ open <a href="https://github.com/Grey-lovelaceK/greystock" target="_blank" rel="noopener">/greystock</a></p>
     </div>
 
+    <p class="line prompt cmd">cat proyectos/casa-azul/README.md</p>
     <div class="project">
-      <h3>Sistema Casa Azul</h3>
-      <p class="tagline">Gestión académica para una fundación educativa</p>
+      <p class="fname"># Sistema Casa Azul — Gestión académica</p>
       <p class="desc">
         Matrículas, asistencia, evaluaciones ponderadas y notas finales, a pedido del jefe de carrera
-        como apoyo externo a la fundación. Diseñé el modelo relacional completo — tablas normalizadas
-        con restricciones, roles y permisos por perfil, y generación de reportes en PDF.
+        como apoyo externo a una fundación educativa. Diseñé el modelo relacional completo — tablas
+        normalizadas con restricciones, roles y permisos por perfil, y generación de reportes en PDF.
       </p>
-      <div class="stack">
-        <span>Laravel 11</span><span>Vue 3 + Inertia</span><span>MySQL</span><span>Spatie Permission</span>
+      <div class="flags">
+        <span>--laravel11</span><span>--vue3</span><span>--inertia</span>
+        <span>--mysql</span><span>--spatie-permission</span>
       </div>
-      <div class="actions">
-        <a href="https://casa-azul.cl" target="_blank" rel="noopener">Sitio en producción →</a>
-      </div>
+      <p class="link-line">$ open <a href="https://casa-azul.cl" target="_blank" rel="noopener">casa-azul.cl</a></p>
     </div>
 
+    <p class="line prompt cmd">cat proyectos/marcaciongo/README.md</p>
     <div class="project">
-      <h3>MarcacionGO</h3>
-      <p class="tagline">Control de asistencia laboral con biometría</p>
+      <p class="fname"># MarcacionGO — Control de asistencia con biometría</p>
       <p class="desc">
         Proyecto de práctica profesional. Registra asistencia con geolocalización, cámara y biometría
         facial (WebAuthn), con las plantillas faciales cifradas en base de datos, según la normativa de
@@ -179,19 +233,33 @@
         producción: aislé la app en su propio puerto y documenté los límites operativos para no afectar
         los servicios del otro sistema.
       </p>
-      <div class="stack">
-        <span>Fastify + TypeScript</span><span>PostgreSQL (Supabase)</span><span>React + Vite (PWA)</span>
-        <span>AWS EC2</span><span>nginx</span><span>pm2</span>
+      <div class="flags">
+        <span>--fastify</span><span>--typescript</span><span>--postgres-supabase</span>
+        <span>--react-vite-pwa</span><span>--aws-ec2</span><span>--nginx</span><span>--pm2</span>
       </div>
-      <p class="note">Código en servidor privado compartido con otro cliente — sin repositorio público por ahora.</p>
+      <p class="link-line note"># código en servidor privado compartido con otro cliente — sin repo público por ahora</p>
     </div>
 
-  </section>
+    <p class="line prompt cmd">cat proyectos/asistencia-django-react/README.md</p>
+    <div class="project">
+      <p class="fname"># Sistema de Asistencia — API + Frontend (equipo de 4)</p>
+      <p class="desc">
+        Control de asistencia con detección automática de atrasos y salidas anticipadas. Tech Lead y
+        arquitecto de un equipo de 4: backend en Django REST con JWT (access + refresh de 7 días),
+        documentación Swagger/OpenAPI y pruebas con pytest; frontend en React con paneles diferenciados
+        por rol y exportación de reportes a Excel.
+      </p>
+      <div class="flags">
+        <span>--django-rest</span><span>--postgresql</span><span>--jwt</span>
+        <span>--swagger</span><span>--pytest</span><span>--react18</span>
+      </div>
+      <p class="link-line">$ open <a href="https://front-asistencia.vercel.app" target="_blank" rel="noopener">front-asistencia.vercel.app</a> · <a href="https://github.com/Grey-lovelaceK/asitencia_rest_api" target="_blank" rel="noopener">/asitencia_rest_api</a> · <a href="https://github.com/Grey-lovelaceK/Front-Asistencia" target="_blank" rel="noopener">/Front-Asistencia</a></p>
+    </div>
 
-  <footer>
-    Santiago, Chile · Actualizado 2026
-  </footer>
+    <p class="line prompt cmd">echo $LOCATION</p>
+    <footer class="term-footer">Santiago, Chile<span class="cursor"></span></footer>
 
+  </div>
 </div>
 </body>
 </html>
